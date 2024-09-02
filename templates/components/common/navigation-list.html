@@ -1,0 +1,75 @@
+{{#if children}}
+    <a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" data-collapsible="navPages-{{id}}">
+        {{name}} 
+        <i class="icon navPages-action-moreIcon" aria-hidden="true">
+            <svg>
+                <use xlink:href="#icon-chevron-down" />
+            </svg>
+        </i>
+    </a>
+
+    <div class="navPage-subMenu" id="navPages-{{id}}" aria-hidden="true" tabindex="-1">
+        <div class="menu__container">
+            <ul class="navPage-subMenu-list">
+                <div class="list__container">
+                    {{#each children}}
+                     {{#unless name '===' 'ShieldWrite'}}
+                        <li class="navPage-subMenu-item {{#if @index '==' 0}}active{{/if}}" {{#if image}} data-image-src="{{getImage image 'thumbnail'}}" {{/if}}>
+                                <a
+                                    class="subMenu-heading-title navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                                    href="{{url}}"
+                                    data-collapsible="navPages-{{id}}"
+                                    data-collapsible-disabled-breakpoint="medium"
+                                    data-collapsible-disabled-state="open"
+                                    data-collapsible-enabled-state="closed">
+                                    <div class="subMenu-wrapper">
+                                        <span>{{name}}</span>
+                                        <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                                            <svg>
+                                                <use xlink:href="#icon-chevron-down"/>
+                                            </svg>
+                                        </i>
+                                    </div>
+                                    
+                                   
+                                </a>
+                                <ul class="navPage-childList" id="navPages-{{id}}">
+                                    <div class="navPage-childList-heading">
+                                        <span>{{name}}</span>
+                                        <i class="icon navPages-action-moreIcon" aria-hidden="true">
+                                            <svg>
+                                                <use xlink:href="#icon-chevron-down"/>
+                                            </svg>
+                                        </i>
+                                    </div>
+                                    {{#each children}}
+                                        <li class="navPage-childList-item" {{#if image}} data-image-src="{{getImage image 'thumbnail'}}" {{/if}}>
+                                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">
+                                                {{name}}
+                                            </a>
+                                        </li>
+                                    {{/each}}
+                                    <li class="navPage-childList-item" {{#if image}} data-image-src="{{getImage image 'thumbnail'}}" {{/if}}>
+                                        <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">
+                                            View All {{name}}
+                                        </a>
+                                    </li>
+                                </ul>
+
+                        </li>
+                        {{/unless}}
+                    {{/each}}
+                </div>
+            </ul>
+            <div class="nav-propImage"><img src="https://storage.googleapis.com/images.trinity.one/Versare/VER-D-Navigation-Add%20Images%20to%20Menu-V2-Jan2023/RoomDivider.jpg" /></div>
+
+        </div>
+    </div>
+
+{{else}}
+
+    <a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">
+        {{name}}
+    </a>
+
+{{/if}}

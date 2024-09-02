@@ -1,0 +1,89 @@
+<nav class="navUser">
+    {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{> components/common/currency-selector}}
+    {{/or}}
+
+    <ul class="navUser-section navUser-section--alt">
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}"
+                   aria-label="{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}"
+                >
+                    <span class="navUser-action-divider">
+                        {{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}
+                    </span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+            </li>
+        {{/if}}
+
+        <li class="navUser-item">
+            <a class="navUser-action navUser-item--compare"
+               href="{{urls.compare}}"
+               data-compare-nav
+               aria-label="{{lang 'common.compare'}}"
+            >
+                {{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span>
+            </a>
+        </li>
+
+        {{#if theme_settings.social_icon_placement_top}}
+            <li class="navUser-item navUser-item--social">
+                {{> components/common/social-links}}
+            </li>
+            <li class="navUser-item navUser-item--divider">|</li>
+        {{/if}}
+
+        <!-- search bar -->
+        <li class="navUser-item destop-search">
+            {{> components/common/quick-search name="search_query_desktop" idnum="desktop"}}
+        </li>
+        <!-- search bar -->
+
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navUser-item">
+                <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">{{lang 'common.gift_cert'}}</a>
+            </li>
+        {{/if}}
+
+        <li class="navUser-item navUser-item--account" style="display: none;">      
+            {{#if customer}}
+                <a class="navUser-action account--login" href="{{urls.account.index}}">
+                    <svg class="icon icon-user">
+                        <use xlink:href="#icon-user"></use>
+                    </svg>
+                </a>
+                <a class="navUser-action account--logout" href="{{urls.auth.logout}}">
+                    {{lang 'common.logout'}}
+                </a>
+            {{else}}
+                <a class="navUser-action" href="{{urls.auth.login}}">
+                    <svg class="icon icon-user">
+                        <use xlink:href="#icon-user"></use>
+                    </svg>
+                </a>
+            {{/if}}
+        </li>
+
+        <li class="navUser-item navUser-item--cart mobile-only">
+            <a
+                class="navUser-action account--cart"
+                data-cart-preview
+                data-dropdown="cart-preview-dropdown"
+                data-options="align:right"
+                href="{{urls.cart}}">
+                <span class="navUser-item-cartLabel">
+                    <img src="{{cdn 'assets/icons/cart-mobile.svg'}}" alt="Cart" class="icon icon-shopping-cart"/>
+                </span>
+                 <span class="countPill cart-quantity"></span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+

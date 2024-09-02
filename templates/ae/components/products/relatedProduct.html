@@ -1,0 +1,9 @@
+<div class="product-you-like--container related-product-grid">
+    <div class="product-like--inner">
+        {{#each (limit products 4)}}
+        <div class="product-inner"  data-related-id="{{id}}">
+            {{>ae/components/products/relatedCard}}
+        </div>
+        {{/each}}
+    </div>
+</div>

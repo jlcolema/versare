@@ -1,0 +1,171 @@
+
+
+
+.solution-wrapper {
+    // width: 100%; 
+    // height: auto;
+
+    // .solution-row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include breakpoint('small'){
+            justify-content: space-around;
+        }
+
+        @include breakpoint('medium'){
+            justify-content: space-between;
+        }
+
+
+        .solution-outer {
+
+            min-width: 175px;
+            min-height: 138px;
+            width: 90%;
+        
+            @include breakpoint('small'){
+                width: 40%;
+            }
+            @include breakpoint('medium'){
+                width: 25%;
+            }
+
+            .solution-part{
+                border: 1px solid stencilColor('solution-border');
+                margin: remCalc(14px);
+                width: auto;
+                height: auto;
+                position: relative;
+                overflow: hidden;
+            
+                .solution-image {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    // }
+}
+
+//white background 
+
+.solution-icon {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    transition: 0.01s;
+    fill: stencilColor('solution-bar-segment');
+}
+
+.solution-icon path {
+    transition-delay: 0.5s;
+    transition: 0.5s;
+}
+
+.solution-part:hover .solution-icon path, .solution-part:active .solution-icon path {
+    d: path("M0,0C0,0,0,38,0,38C0,38,90,58,90,58C90,58,180.5,38,180.5,38C180.5,38,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0") !important;
+    d: "M0,0C0,0,0,38,0,38C0,38,90,58,90,58C90,58,180.5,38,180.5,38C180.5,38,180,0,180,0C180,0,0,0,0,0C0,0,0,0,0,0";
+    transition-delay: 1s;
+    transition: 0.5s;
+}
+
+.solution-outer:hover .solution-icon, .solution-outer:active .solution-icon {
+    height: 170%;
+    transition: 0.01s;
+}
+
+
+// view button 
+
+.solution-part a .view-btn {
+    transform: translateY(-250%) translateX(-50%) scale(.25);
+}
+.view-btn {
+    position: absolute;
+    padding: 2px 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s,transform 0.3s;
+    font-size: 18px;
+    font-weight: bolder;
+    top: 50%;
+    left: 50%;
+    border: 2px solid stencilColor('solution-view-btn');
+    background: stencilColor('solution-view-btn-background');
+    color: stencilColor('solution-view-btn');
+    opacity: 0;
+    z-index: 7;
+}
+
+.solution-part:hover .view-btn, .solution-part:active .view-btn {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-50%) scale(1);
+}
+
+
+// header text & effects
+
+
+.icon-header {
+   
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-size: remCalc(14px);
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: translateY(5px);
+    width: 100%;
+
+    @include breakpoint('small'){
+        font-size: remCalc(10px);
+    }
+    @include breakpoint('medium'){
+        font-size: remCalc(9px);
+    }
+    @include breakpoint('large'){
+        font-size: remCalc(14px);
+    }
+}
+
+.solution-part:hover .icon-header, .solution-part:active .icon-header {
+    transition: 0.5s;
+    animation-name: iconheader;
+    animation-duration: 0.25s;
+}
+
+
+
+
+//fonts 
+.heading-container {
+    .heading {
+        font-family: stencilFontFamily('heading-main-font');
+    }
+}
+
+
+@keyframes iconheader {
+    0% {transform: translateY(0px)}
+    25% {transform: translateY(-50px)}
+    50% {transform: translateY(-25px)}
+    75% {transform: translateY(10px)}
+    80% {transform: translateY(15px)}
+    85% {transform: translateY(20px)}
+    90% {transform: translateY(15px)}
+    95% {transform: translateY(10px)}
+    100% {transform: translateY(0px)}
+}
+
+
+

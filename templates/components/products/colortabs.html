@@ -1,0 +1,44 @@
+<div class="accordion-block accordion-color-selector">
+        <div class="accordion-block">
+
+            <div class="form-field form-field-colors" data-product-attribute="swatch">
+            
+                <div class="swatch-full-container">
+                    
+            test
+                    {{#each this.values}}
+                        <div class="label-color-container">
+            
+                            <label class="form-option form-option-swatch" for="attribute_swatch_{{../id}}_{{id}}" data-product-attribute-value="{{id}}">
+                                {{#if image}}
+                                    <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>
+                                {{/if}}
+                                {{#if data.[2]}}
+                                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                                    <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+                                {{else}}
+                                    {{#if data.[1]}}
+                                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                                    {{else}}
+                                        {{#if data.[0]}}
+                                            <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                        {{/if}}
+                                    {{/if}}
+                                {{/if}}
+                                {{#if pattern}}
+                                    <span class="form-option-expanded">
+                                        <span class="form-option-image" style="background-image: url('{{getImage image 'core-swatch'}}');"></span>
+                                    </span>
+                                {{/if}}
+                            </label>
+            
+                            <div class="swatch-color-label">{{this.label}}</div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    

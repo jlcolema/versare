@@ -1,0 +1,18 @@
+*.gz
+.DS_Store
+
+# Ignore all zip files
+
+*.zip
+
+# Title
+
+node_modules/
+assets/dist/
+parsed/
+package-lock.json
+
+# Miscellaneous
+
+.nova
+*.code-workspace

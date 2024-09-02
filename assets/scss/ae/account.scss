@@ -1,0 +1,224 @@
+.account-buttons {
+    padding: 20px 25px;
+    font-family: "Altform";
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 1.14286rem;
+    font-weight: 600;
+    border-color: stencilColor('color-theme');
+    color: stencilColor('color-theme');
+
+    &:hover {
+        background-color: stencilColor('color-theme');
+        color: $white;
+    }
+}
+.account--headings {
+    font-family: stencilFontFamily('altform-font');
+    font-weight: 600;
+}
+.navBar--account {
+    display: block;
+    .navBar-section {
+        .navBar-item {
+            font-family: stencilFontFamily('altform-regular-font');
+
+            &.navBar-item--wishlist.is-active {
+                a {
+                    color: stencilColor('is-active-color');
+                }
+            }
+        }
+        .is-active {
+            color: stencilColor('is-active-color');
+            border-color: stencilColor('is-active-color');
+        }
+    }
+}
+
+.account {
+    font-family: stencilFontFamily('altform-font');
+    font-weight: 500;
+    @include breakpoint('small'){
+        padding-top: 3rem;
+    }
+
+    .form-actions {
+        a.button {
+            &.button-primary,
+            &.button--primary {
+                color: $color-white;
+            }
+        }
+        .button {
+            padding: 10px 20px !important;
+        }
+
+        [data-wishlist-delete] {
+            @extend .account-buttons;
+        }
+    }
+
+    .table-actions.ae-edit {
+        .form {
+            margin-top: 0;
+        }
+    }
+
+    .page-heading {
+        font-family: stencilFontFamily('altform-font');
+        font-weight: 600;
+    }
+    .navBar-section {
+        .navBar-item {
+            font-family: stencilFontFamily('altform-regular-font');
+            .navBar-action {
+                font-family: stencilFontFamily('altform-regular-font');
+            }
+        }
+        .is-active {
+            color: stencilColor('is-active-color');
+            border-color: stencilColor('is-active-color');
+        }
+    }
+
+    .form-label {
+        font-family: stencilFontFamily('altform-regular-font');
+        font-size: 1.1rem;
+    }
+
+    .account--customization {
+        .product {
+            .card-body {
+                .card-title {
+                    font-family: stencilFontFamily('altform-regular-font');
+                    font-size: 1.2rem;
+                }
+                .card-text {
+                   
+                    .rating--small {
+                        .icon--ratingFull {
+                            svg {
+                                fill: stencilColor('review-rating-color');
+                                stroke: stencilColor('review-rating-color');
+                                stroke-width: 2px;
+                            }
+                        }
+                        .icon--ratingEmpty {
+                            svg {
+                                fill: stencilColor('icon-item-empty');
+                                stroke: stencilColor('review-rating-color'); 
+                                stroke-width: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//header - login / logout 
+
+.account--login, .account--logout {
+    @include breakpoint('medium'){
+        padding-left: 0;
+        padding-right: 0;
+    }
+    @include breakpoint('large'){
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+}
+
+.account--logout {
+    @include breakpoint('medium'){
+        font-size: remCalc(10px);
+    }
+}
+
+.account--cart {
+    @include breakpoint('medium'){
+        padding-left: 0.1rem;
+        padding-right: 0.1rem;
+    }
+    @include breakpoint('large'){
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+.login-form {
+    margin-top: 1.5rem;
+    
+    .form-actions {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+//header - login / logout 
+
+
+//breadcrumbs 
+
+.account--crumbs {
+    font-family: stencilFontFamily('altform-font');
+    font-weight: 500;
+}
+.account {
+    padding: 0;
+    .form {
+        margin-top: 50px;
+        .form-label {
+            font-weight: 500;
+        }
+    }
+}
+.navBar--sub {
+    margin-bottom: 20px;
+    .navBar-item {
+        color: stencilColor('color-body');
+        a {
+            color: inherit;
+        }
+        &.is-active {
+            font-weight: 700;
+            border: none;
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+.type-account_addressbook {
+    .alertBox {
+        margin-bottom: 30px;
+    }
+}
+
+// addressBox.scss 
+
+.panel--address {
+    .button--small {
+        text-transform: uppercase;
+        font-family: stencilFontFamily('altform-regular-font');
+    }
+    .address-title {
+        font-weight: 600;
+    }
+
+    .form-actions .button + .button {
+        @extend .account-buttons;
+        background-color: $white;
+    }
+}
+
+
+.form-actions  {
+    a.button {
+        @extend .account-buttons;
+    }
+}

@@ -1,0 +1,16 @@
+{{#partial "page"}}
+
+{{#if theme_settings.show_page_breadcrumbs}}
+  {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+{{/if}}
+
+<div class="page contact-us--page">
+  <div class="contact-us--inner maxwidth-wrapper">
+    {{region name='region-contact-us'}}
+    {{> components/common/social-links}}
+  </div>
+</div>
+
+{{/partial}}
+
+{{> layout/base}}

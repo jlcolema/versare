@@ -1,0 +1,40 @@
+<nav aria-label="Breadcrumb">
+    <ol class="breadcrumbs">
+        {{#unless theme_settings.hide_breadcrumbs }}
+            {{#each breadcrumbs}}
+                {{#and (if name '!==' '--FOOTER--') (if name '!==' '--HEADER--') }}
+                    {{#if name '!==' '--FOOTER-BOTTOM--'}}
+                        <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                            <a class="breadcrumb-label"
+                            href="{{url}}"
+                            {{#if @last}}aria-current="page"{{/if}}
+                            >
+                                <span>{{name}}</span>
+                            </a>
+                        </li>
+                    {{/if}}
+                {{/and}}
+            {{/each}}
+        {{/unless}}
+    </ol>
+</nav>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+        {{#each breadcrumbs}}
+        {
+            "@type": "ListItem",
+            "position": {{add @index 1}},
+            "item": {
+                "@id": {{{JSONstringify url}}},
+                "name": {{{JSONstringify name}}}
+            }
+        }{{#unless @last}},{{/unless}}
+        {{/each}}
+    ]
+}
+</script>

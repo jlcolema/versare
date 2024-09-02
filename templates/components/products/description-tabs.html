@@ -1,0 +1,96 @@
+<ul class="tabs" data-tab>
+    <li class="tab is-active">
+        <a class="tab-title tab-scroll" href="#tab-description">{{lang 'products.description'}}</a>
+    </li>
+    {{#if theme_settings.show_feature_tab}}
+        <li class="tab">
+            <a class="tab-title tab-scroll" href="#tab-features">{{lang 'products.features'}}</a>
+        </li>
+    {{/if}}
+    {{#if theme_settings.show_specification_tab}}
+        <li class="tab">
+            <a class="tab-title tab-scroll" href="#tab-specifications">{{lang 'products.specifications'}}</a>
+        </li>
+    {{/if}}
+    <li class="tab">
+        <a class="tab-title tab-scroll" href="#tab-customDelivery">{{lang 'products.deliveryinfo'}}</a>
+    </li>
+
+    {{#each product.options}}
+        {{#if display_name '===' 'Color'}}
+            <li class="tab">
+                <a class="tab-title tab-scroll" href="#tab-color">{{lang 'products.colors'}}</a>
+            </li>
+        {{/if}}
+    {{/each}}
+
+    <li class="tab">
+        <a class="tab-title tab-scroll" href="#tab-downloads">{{lang 'products.downloads'}}</a>
+    </li>
+    <li class="tab">
+        <a class="tab-title tab-scroll" href="#tab-p-reviews">{{lang 'products.p-reviews'}}</a>
+    </li>
+</ul>
+
+
+<div class="tabs-contents">
+ 
+    {{{product.description}}}
+
+    <div class="tab-content" id="tab-color">
+
+        <div class="tab-color-title">Fabric <a href="https://pull06-versare.netdna-ssl.com/media/pdf_file/109/acoustical-fabric-chart-1.pdf"><svg class="icon icon-download"><use xlink:href="#icon-download"></use></svg></a></div>
+
+        {{#each product.options}}
+        {{#if display_name '===' 'Color'}}
+            {{> components/products/colortabs}}
+        {{/if}}
+        {{/each}} 
+           
+    </div>
+
+    
+
+    <!-- <div class="tab-content" id="tab-deliveryinfo">
+       <p class="deliveryinfo-text">
+            {{lang 'products.pdp_delicery_text'}}
+       </p>
+    </div> -->
+
+    <div class="tab-content" id="tab-p-reviews">    
+
+    <!-- TrustBox widget - Product Reviews MultiSource SEO -->
+    <div class="trustpilot-widget" data-locale="en-US" data-template-id="5763bccae0a06d08e809ecbb" data-businessunit-id="5c7f48dabbc0f20001f134a0" data-style-height="700px" data-style-width="100%" data-theme="light" data-sku="{{product.id}},{{#each product.options}}{{#if display_name '==' 'Selector'}}{{#each values}}{{data}},{{/each}}{{/if}}{{/each}}" data-name="{{product.title}}" data-review-languages="en" data-star-color="#93bee6" data-font-family="Montserrat" data-text-color="#404041">
+        <a href="https://www.trustpilot.com/review/versare.com" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+    <!-- End TrustBox widget -->
+
+          
+    {{#if theme_settings.big_commerce_reviews}}
+        {{#if product.num_reviews '>' 0}}
+      
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+         
+        {{else}}
+            {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+        {{/if}}
+    {{/if}}
+
+     
+
+     
+    </div>
+        
+
+   {{#if product.warranty}}
+       <!-- <div class="tab-content" id="tab-warranty"> -->
+           {{{product.warranty}}}
+       <!-- </div> -->
+   {{/if}}
+
+   {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+       <div class="tab-content" id="tab-reviews">
+           {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+       </div>
+   {{/all}}
+</div>

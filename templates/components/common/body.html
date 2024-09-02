@@ -1,0 +1,39 @@
+<div class="body {{dashcase template}} {{#if (occurrences (dashcase template) 'pages-custom-product-version') '>=' 1}} body-product--custom {{/if}}" id="main-content" role="main"  data-currency-code="{{currency_selector.active_currency_code}}">
+
+    {{#block "hero"}} {{/block}}
+
+    {{#if template '===' 'pages/home'}}
+        {{{region name="shop-section"}}}
+        
+        <div class="widget-container two_column_widget_1">
+            {{{region name="two_column_widget_1"}}}
+        </div>
+        
+        {{{region name="popular_products_widget"}}}
+
+        <div class="widget-container two_column_widget_2">
+            {{{region name="two_column_widget_2"}}}
+        </div>
+
+        {{{region name="company_carousel_widget"}}}
+        {{{region name="blog_article_widget"}}}
+    {{/if}}
+    {{#or (if page.title '===' 'Home New')  (if template '===' 'pages/home')}}
+        {{region name="header_hero_widget_region"}}
+        {{region name="sticky_nav_widget_region"}}
+        {{{region name="trust_us_widget"}}}
+        {{{region name="call_to_action_widget"}}}
+        {{{region name="item_block_top_container"}}}
+        {{{region name="three_block_widget"}}}
+        {{{region name="make_up_top_region"}}}
+        {{{region name="make_up_bottom_region"}}}
+    {{/or}}
+    
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+
+    {{> components/common/modal/modal}}
+    {{> components/common/alert/alert-modal}}
+    
+</div>

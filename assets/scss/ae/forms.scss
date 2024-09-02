@@ -1,0 +1,10 @@
+.form-option-variant--color,
+.form-option-variant--pattern {
+    @include square(222);
+    min-width: initial;
+    padding: 0;
+
+    @include breakpoint('small') { // 4
+        pointer-events: inherit; // 3
+    }
+}

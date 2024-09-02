@@ -1,0 +1,116 @@
+---
+category:
+  shop_by_price: true
+  products: 
+    limit: { { theme_settings.categorypage_products_per_page } }
+---
+
+{{inject "categoryProductsPerPage"
+theme_settings.categorypage_products_per_page}} {{#partial "head"}} {{#if
+pagination.category.previous}}
+<link rel="prev" href="{{pagination.category.previous}}" />
+{{/if}} {{#if pagination.category.next}}
+<link rel="next" href="{{pagination.category.next}}" />
+{{/if}} {{/partial}} {{#partial "page"}} {{> components/common/breadcrumbs
+breadcrumbs=breadcrumbs}}
+
+<style>
+  .sitebody,
+  .hawkmpp,
+  .hawksortby,
+  .hawk-guidedNavWrapper .hawk-groupHeading,
+  .hawk-guidedNavWrapper .hawk-navGroup li a {
+    color: #000;
+  }
+</style>
+
+<div class="page" {{#if breadcrumbs.length '>=' 4}}data-child-category="true"{{/if}} {{#each breadcrumbs}}{{#if @index '===' 2}}data-parent-category="{{name}}"{{/if}}{{/each}}>
+  {{#if category.image}} {{> components/common/responsive-img
+  image=category.image lazyload=../../theme_settings.lazyload_mode }} {{/if}}
+
+  <div class="page-topbar">
+    <div id="hawkbreadcrumb"></div>
+
+    <div id="hawktitle"></div>
+
+    <div id="hawkbannertop"></div>
+    {{region name="category-marketing-nav"}}
+    <div class="category-description">{{{category.description}}}</div>
+
+    <div id="hawktoptext"></div>
+  </div>
+
+  <div class="page-main">
+    <div class="page-sidebar" >
+      {{#each categories}}
+      {{#if name '===' 'Products'}}
+        {{#each children}}
+        <script>
+        var elem = document.createElement('textarea');
+        elem.innerHTML = '{{name}}';
+        var decoded = elem.value;
+          if(decoded == document.querySelector('.page').getAttribute('data-parent-category') &&
+          document.querySelector('.page').getAttribute('data-child-category') == 'true') {
+            const sidebar = document.querySelector('.page-sidebar')
+            console.log('test')
+            let parentLink = document.querySelector('.breadcrumbs .breadcrumb.is-active').previousElementSibling;
+            parentLink = parentLink.querySelector('a').href;
+            const sidebarNav = `
+            <div class="sidebar-nav">
+            <p><a href="${parentLink}">{{name}}</a></p>
+            <ul>
+            {{#each children}}
+              <li><a href="{{url}}">{{name}}</a></li>
+            {{/each}}
+            </ul>
+            </div>
+            `;
+            sidebar.insertAdjacentHTML('afterbegin', sidebarNav)
+
+            const navItems = document.querySelectorAll('.sidebar-nav li > a');
+            navItems.forEach(item => {
+              if(window.location.href.includes(item.href)) item.classList.add('active')
+            })
+          }
+        </script>
+        {{/each}}
+      {{/if}}
+    {{/each}}
+      <div id="hawkbannerlefttop"></div>
+
+      <div id="hawkfacets"></div>
+
+      <div id="hawkbannerleftbottom"></div>
+    </div>
+
+    <div class="page-content">
+      <div id="hawktoppager"></div>
+
+      <div id="hawkrelated"></div>
+
+      <div id="hawktabs"></div>
+
+      <div id="hawkitemlist"></div>
+
+      <div id="hawkbottompager"></div>
+
+      <div id="hawkbannerbottom"></div>
+
+      <div id="hawkbannerbottom2"></div>
+
+      <div id="hawkfirstitem"></div>
+
+      <div id="hawklastitem"></div>
+
+      <div id="hawkexplain"></div>
+
+      <div id="hawksmartbug"></div>
+    </div>
+  </div>
+</div>
+
+<div class="region-below-product-grid">
+  {{region name='region-below-product-grid'}}
+</div>
+
+{{/partial}} {{> layout/base}}

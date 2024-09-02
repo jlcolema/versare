@@ -1,0 +1,101 @@
+.contact-us--page {
+  padding: 0 10px 100px;
+  .contact-us--widget {
+    display: flex;
+    flex-direction: column;
+    @include breakpoint('medium') {
+      display: grid;
+      grid-template-areas: 
+      "topSection formSection"
+      "bottomSection formSection";
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 50px;
+    }
+    @include breakpoint('large') {
+      grid-column-gap: 100px;
+    }
+    .top-section {
+      grid-area: topSection;
+      order: 1;
+      margin: 0 0 50px;
+    }
+    .bottom-section {
+      grid-area: bottomSection;
+      order: 3;
+    }
+    .form-section {
+      grid-area: formSection;
+      order: 2;
+    }
+    h1 {
+      font-family: stencilFontFamily('altform-regular-font');
+      color: stencilColor("twoColumnWidget-header");
+      font-weight: 600;
+      margin: 0 0 15px;
+      font-size: remCalc(24px);
+      line-height: remCalc(43px);
+      @include breakpoint('medium') {
+        font-size: remCalc(42px);
+        line-height: remCalc(76px);
+        margin: 0;
+      }
+    }
+    h2 {
+      font-family: stencilFontFamily('altform-font');
+      color: stencilColor("twoColumnWidget-header");
+      font-weight: 600;
+      font-size: remCalc(18px);
+      line-height: remCalc(32px);
+      margin: 50px 0 10px;
+      @include breakpoint('medium') {
+        margin: 50px 0 10px;
+        letter-spacing: remCalc(0.42px);
+      }
+    }
+    p {
+      font-family: stencilFontFamily('altform-regular-font');
+      color: stencilColor("color-body");
+      font-size: remCalc(18px);
+      line-height: remCalc(32px);
+      letter-spacing: remCalc(0.36px);
+      font-weight: 400;
+      margin: 0;
+      @include breakpoint('medium') {
+        font-size: remCalc(21px);
+        line-height: remCalc(38px);
+        letter-spacing: normal;
+      }
+    }
+  }
+  .socialLinks-item {
+    margin-right: 15px;
+    .icon {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      background-color: stencilColor('color-body');
+      &.icon--linkedin {
+        padding: 6px;
+        svg {
+          background-color: stencilColor('color-white');
+          fill: stencilColor('color-body');
+          stroke: stencilColor('color-body');
+        }
+      }
+    }
+  }
+  .hbspt-form {
+    @include breakpoint('medium') {
+      margin: 5rem 0;
+    }
+    label {
+      span {
+        font-family: stencilFontFamily('altform-regular-font');
+        color: stencilColor("color-black");
+        font-weight: 600;
+        font-size: remCalc(16px);
+        line-height: remCalc(29px);
+      }
+    }
+  }
+}

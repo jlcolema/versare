@@ -1,0 +1,28 @@
+<div id="accordion-description">
+  {{{product.description}}}
+  {{#if product.warranty}}
+    <p class="accordion" id="downloads">
+      {{lang 'products.downloads'}}
+    </p>
+    <div class="panel"> 
+      {{{product.warranty}}}
+    </div> 
+  {{/if}}
+  <p class="accordion" id="reviews">
+    {{lang 'products.p-reviews'}}
+  </p>
+  <div class="panel">
+    <!-- TrustBox widget - Product Reviews MultiSource SEO -->
+    <div class="trustpilot-widget" data-locale="en-US" data-template-id="5763bccae0a06d08e809ecbb" data-businessunit-id="5c7f48dabbc0f20001f134a0" data-style-height="700px" data-style-width="100%" data-theme="light" data-sku="{{product.id}},{{#each product.options}}{{#if display_name '==' 'Selector'}}{{#each values}}{{data}},{{/each}}{{/if}}{{/each}}" data-name="{{product.title}}" data-review-languages="en" data-star-color="#93bee6" data-font-family="Montserrat" data-text-color="#404041">
+        <a href="https://www.trustpilot.com/review/versare.com" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+    <!-- End TrustBox widget -->
+    {{#if theme_settings.big_commerce_reviews}}
+      {{#if product.num_reviews '>' 0}}
+        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+      {{else}}
+        {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

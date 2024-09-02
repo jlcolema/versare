@@ -1,0 +1,316 @@
+
+.wrapper {
+    width: 100%;
+    .heading-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        @include breakpoint('medium') {
+            margin-top: 12rem;
+        }
+        margin-bottom: 5rem;
+        .heading {
+            text-align:center;
+            background: stencilColor('heading-background-color');
+            height: auto;
+            padding: remCalc(2.5px) 0rem;
+            font-size: 1.1rem;
+            width: 78%;
+            color: stencilColor('heading-text-color');
+            text-transform: uppercase;
+            z-index: 5;
+
+            @include breakpoint('small'){
+                width: 70%;
+                font-size: remCalc(25px);
+            }
+            @include breakpoint('medium'){
+                width: 60%;
+            }
+            @include breakpoint('large'){
+                width: 40%;
+            }
+        }
+        .heading-line {
+            height: 1px; 
+            background: stencilColor('heading-background-color');
+            width: 100%;
+            margin-top:-1rem;
+            z-index: 1;
+
+            @include breakpoint('small'){
+                margin-top: -1.5rem;
+            }
+        }
+ 
+    }
+    .inner-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 3rem;
+        .block{
+
+            width: 100%;
+            @include breakpoint('small'){
+                width: 47%;
+            }
+            @include breakpoint('medium'){
+                width: 49%;
+            }
+
+
+            .block-text {
+                h2 {
+                    font-size: remCalc(18px);
+                    font-weight: bolder;
+
+                    @include breakpoint('small'){
+                        font-size: remCalc(18px);
+                    }
+                    @include breakpoint('medium'){
+                        font-size: remCalc(25px);
+                    }
+                }
+                p {
+                    font-family: stencilFontFamily('body-main-font');
+                    font-size: 1.1rem;
+
+                }
+            }
+            .block-image{
+                @include breakpoint('small'){
+                    margin-top: 6rem;
+                }
+            }
+        }
+        .block--small {
+            
+
+            @include breakpoint('medium'){
+                width: 40%; 
+                margin-right: 1%;
+            }
+            @include breakpoint('large'){
+                margin-right: 9%;
+            }
+
+               
+        }
+        .block--big {
+            @include breakpoint('medium'){
+                width: 58%;
+            }
+            @include breakpoint('large'){
+                width: 50%;
+            }
+        }
+        .advantagewrapper {
+            display: flex;
+            justify-content: space-around;
+            perspective: 1000px;
+            margin-top: remCalc(30px);
+            .item {
+                height: remCalc(100px);
+                width: remCalc(100px);
+                position: relative;
+
+                @include breakpoint('medium'){
+                    height: remCalc(130px);
+                    width: remCalc(130px);
+                }
+                @include breakpoint('large'){
+                    height: remCalc(170px);
+                    width: remCalc(170px);
+                }
+
+                .item-info{
+                   
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 100%;
+                    .item-front{
+                        background-position: center;
+                        background-size: contain;
+                        background-color: stencilColor('icon-item-front-color');
+                        border-radius: inherit;
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+
+                        @include breakpoint('large') {
+                            background-size: initial;
+                        }
+
+                        .patented>span {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background: url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/bg-label.png?t=1571237199&_ga=2.168959777.1615262002.1571234977-1483870874.1570543089') no-repeat center top;
+                            width: 60px;
+                            height: 65px;
+                            background-size: contain;
+
+                            @include breakpoint('medium'){
+                                width: 79px;
+                                height: 75px;
+                            }
+
+                            @include breakpoint('large'){
+                                width: 103px;
+                                height: 82px;
+                            }
+                           
+                        }
+                    }
+                    .item-back{
+                        background-color: stencilColor('icon-item-hover-color');
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: inherit;
+                        overflow: hidden;
+                      
+  
+                     
+
+                        .back-text {
+                            padding: remCalc(5px);
+                            display: flex;
+                            flex-wrap: wrap;
+                            a {
+                                color: stencilColor('icon-item-text');
+                                padding: 1rem;
+                                font-size: remCalc(7px);
+                                text-decoration: none;
+                                text-transform: uppercase;
+
+                                @include breakpoint('small'){
+                                    font-size: remCalc(7px);
+                                }
+
+                                @include breakpoint('medium'){
+                                    font-size: remCalc(9px);
+                                }
+                                @include breakpoint('large'){
+                                    font-size: remCalc(12px);
+                                }
+                            }
+                        }
+            
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// hover effects begin
+
+.item {
+	transition: transform .33s;
+
+	transform-style: preserve-3d;
+}
+
+.item:hover {
+	transform: rotateX(-89deg);
+}
+
+.item:hover .item-back {
+    opacity: 1;
+    transition: 0.45s ease-in-out;
+}
+.item:hover .item-front {
+    opacity: 0;
+    transition: 0.45s ease-in-out;
+}
+
+.item-front {
+    opacity: 1;
+    transition: 0.45 ease-in-out;
+
+}
+
+.item-back {
+
+    transform: rotateX(90deg);
+    opacity: 0;
+    transition: 0.5s;
+}
+// hover effects end
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+    .item:hover {
+        transform: none;
+        .item-front {
+            display: none;
+        }
+        .item-back {
+            opacity: 1;
+            display: block;
+            transform: none;
+            transform-style: inherit;
+            transition: none;
+        }
+    }
+}
+
+
+// the different pictures inside the circle items
+
+
+
+.front-one {
+    background-image:url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/demo-1.png?t=1571236472&_ga=2.94010141.1615262002.1571234977-1483870874.1570543089');
+}
+
+.front-two {
+    background-image:url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/demo-2.png?t=1571236473&_ga=2.96615071.1615262002.1571234977-1483870874.1570543089');
+}
+
+.front-three {
+    background-image:url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/demo-3.png?t=1571236473&_ga=2.96615071.1615262002.1571234977-1483870874.1570543089');
+}
+
+.front-four {
+    background-image:url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/demo-4.png?t=1571236473&_ga=2.96615071.1615262002.1571234977-1483870874.1570543089');
+}
+
+.front-five {
+    background-image:url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/demo-5.png?t=1571236473&_ga=2.96615071.1615262002.1571234977-1483870874.1570543089');
+}
+
+.front-six {
+    background-image:url('https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/demo-6.png?t=1571236473&_ga=2.96615071.1615262002.1571234977-1483870874.1570543089');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

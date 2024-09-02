@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>C581F74C-D435-0C02-3297-724A0750A684@1x</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="36" height="36"></rect>
+    </defs>
+    <g id="Product-Detail-Page(s)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PDP-Drop-Down-Options-/mobile" transform="translate(-8.000000, -510.000000)">
+            <g id="Group-610" transform="translate(8.000000, 503.000000)">
+                <g id="chevron-down" transform="translate(0.000000, 7.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="chevron-down-(Background/Mask)" transform="translate(18.000000, 18.000000) scale(-1, -1) rotate(-89.999999) translate(-18.000000, -18.000000) "></g>
+                    <path d="M10.0606602,12.4393397 L17.9999999,20.3786801 L25.93934,12.4393397 C26.5251259,11.8535532 27.4748739,11.8535532 28.0606598,12.4393397 C28.6464471,13.0251261 28.6464471,13.9748737 28.0606598,14.5606601 L19.0606598,23.5606597 C18.4748739,24.1464463 17.5251259,24.1464463 16.93934,23.5606597 L7.93933976,14.5606601 C7.35355327,13.9748737 7.35355327,13.0251261 7.93933976,12.4393397 C8.52512616,11.8535532 9.47487375,11.8535532 10.0606602,12.4393397 Z" id="Vector-" fill-opacity="1" fill="#C273A7" mask="url(#mask-2)" transform="translate(18.000000, 18.000000) scale(-1, -1) rotate(-89.999999) translate(-18.000000, -18.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

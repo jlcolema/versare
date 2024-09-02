@@ -1,0 +1,159 @@
+
+{{#if banners.bottom}}
+    {{#if settings.data_tag_enabled}}
+        <div class="banners" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+{{/if}}
+
+<footer class="footer" role="contentinfo">
+    <div class="maxwidth-wrapper">
+        <section class="footer-newsletter">
+            {{#if settings.show_newsletter_box}}
+                {{> components/common/subscription-form}}
+            {{/if}}
+        </section>
+        <section class="store-logo">
+            {{> components/common/footer-logo}}
+        </section>
+        <section class="footer-info" data-footer-menu>
+            {{#each categories}}
+                {{#if name '==' 'Products'}}
+                    <article class="footer-info-col" data-section-type="footer-categories">
+                        <h5 class="footer-info-heading" data-collapsible="footerCategories-{{id}}" aria-controls="footerCategories-{{id}}" aria-expanded="false">   
+                            {{name}}
+                            <i class="icon" aria-hidden="true">
+                                <svg>
+                                    <use xlink:href="#icon-chevron-down"></use>
+                                </svg>
+                            </i>
+                        </h5>
+                        <div class="customer__services" id="footerCategories-{{id}}"> 
+                            <ul class="footer-info-list">
+                                {{#each (limit children 5)}}
+                                    {{#unless name '==' 'ShieldWrite'}}
+                                        <li>
+                                            <a href="{{url}}">
+                                                {{name}} 
+                                            </a>
+                                        </li>
+                                    {{else}}
+                                        <li>
+                                            <a href="/shieldwrite/">
+                                                {{name}} 
+                                            </a>
+                                        </li>
+                                    {{/unless}}
+                                {{/each}}
+                                <li>
+                                    <a href="{{url}}">
+                                        {{lang 'common.view_all'}}
+                                        <i class="icon" aria-hidden="true">
+                                            <svg>
+                                                <use xlink:href="#icon-chevron-down"></use>
+                                            </svg>
+                                        </i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                {{/if}}
+            {{/each}}
+            {{#each pages}}
+                {{#if name '===' '--FOOTER--'}}
+                    {{#each children}}
+                        <article class="footer-info-col" data-section-type="footer-webPages">
+                            <h5 class="footer-info-heading" data-collapsible="footerPages-{{#contains name " "}}{{#replace " "  (toLowerCase name)}}-{{/replace}}{{else}}{{name}}{{/contains}}" aria-controls="footerPages-{{#contains name " "}}{{#replace " " (toLowerCase name)}}-{{/replace}}{{else}}{{name}}{{/contains}}" aria-expanded="false">
+                                {{name}}
+                                <i class="icon" aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="#icon-chevron-down"></use>
+                                    </svg>
+                                </i>
+                            </h5>
+                            <div class="customer__services" id="footerPages-{{#contains name " "}}{{#replace " "  (toLowerCase name)s}}-{{/replace}}{{else}}{{name}}{{/contains}}">
+                                <ul class="footer-info-list">
+                                    {{#each ../../pages}}
+                                        {{#if name '===' '--HEADER--'}}
+                                            {{#each children}}
+                                                {{assignVar "parentName" ../../name}}
+                                                {{#if (concat ' ' name) '==' (getVar "parentName")}}
+                                                    {{#each (limit children 5)}}
+                                                        <li>
+                                                            <a href="{{url}}">
+                                                                {{name}} 
+                                                            </a>
+                                                        </li>
+                                                    {{/each}}
+                                                {{/if}}
+                                            {{/each}}
+                                        {{/if}}
+                                    {{/each}}
+                                    {{#each (limit children 5)}}
+                                        <li>
+                                            <a href="{{url}}">
+                                                {{name}}
+                                            </a>
+                                        </li>
+                                    {{/each}}
+                                    <li>
+                                        <a href="{{url}}">
+                                            {{lang 'common.view_all'}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+        </section>
+
+        {{#if theme_settings.geotrust_ssl_common_name}}
+            <div class="footer-geotrust-ssl-seal">
+                {{> components/common/geotrust-ssl-seal}}
+            </div>
+        {{/if}}
+    </div>
+    <section class="footer-bottom">
+        <div class="maxwidth-wrapper">
+            {{#if theme_settings.show_copyright_footer}}
+                <div class="footer-copyright">
+                    <p class="powered-by">&copy; {{moment format="YYYY"}} {{settings.store_name}} </p>
+                </div>
+            {{/if}}
+            <div class="footer-bottom-webpages">
+                {{#each pages}}
+                    {{#if name '===' '--FOOTER-BOTTOM--'}}
+                        <ul>
+                            {{#each children}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                {{/each}}
+            </div>
+            <div class="footer-socials">
+                {{#if theme_settings.social_icon_placement_bottom '!==' 'bottom_none'}}
+                    {{> components/common/social-links}}
+                {{/if}}
+            </div>
+        </div>
+    </section>
+</footer>

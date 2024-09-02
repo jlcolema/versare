@@ -1,0 +1,123 @@
+// custom Icons
+.custom-icons {
+    @include u-listBullets("none");
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 55%;
+    flex-wrap: wrap;
+
+    @include breakpoint('medium') {
+        flex-wrap: nowrap;        
+    }
+
+    li {
+        text-align: center;
+        width: 50%;
+
+        @include breakpoint('medium') {
+            width: 25%;
+        }
+    }
+
+    .custom-title {
+        color: stencilColor('icon-blue-color');
+        font-family: stencilFontFamily('altform-regular-font');
+        font-size: remCalc(15);
+        padding: 20px 30px;
+
+        @include breakpoint('medium') {
+            font-size: remCalc(17);
+            padding: 20px 15px;
+        }
+
+        @include breakpoint('large') {
+            padding: 20px 41px;
+        }
+    }
+
+    .custom-icon {
+        padding: 0 45px;
+
+        @include breakpoint('large') {
+            padding: 0 65px;
+        }
+    }
+
+    &.light-icons {
+        .custom-title {
+            color: $white;
+        }
+    }
+}
+
+.pages-home {
+    .custom-icons {
+        margin-bottom: -390px;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+
+        @include breakpoint('small') {
+            margin-bottom: -190px;
+        }
+
+        @include breakpoint('medium') {
+            margin-bottom: -230px;
+        }
+        
+        @include breakpoint('large') {
+            margin-bottom: -260px;
+            padding-top: 60px;
+        }
+
+        @include breakpoint('xlarge') {
+            margin-bottom: -330px;
+            padding-top: 100px;
+        }
+
+        .custom-icon {
+            padding: 0 50px;
+
+            @include breakpoint('small') {
+                padding: 0 65px;
+            }
+
+            @include breakpoint('medium') {
+                padding: 0 85px;
+            }
+
+            @include breakpoint('large') {
+                padding: 0 135px;
+            }
+        }
+
+        li {
+            @include breakpoint('small') {
+                width: 25%;
+            }
+        }
+    }
+}
+
+.productView {
+    .custom-icons {
+        width: 100%;
+        margin-top: 35px;
+
+        li {
+            @include breakpoint('small') {
+                width: 25%;
+            }
+        }
+
+        .custom-icon {
+            @include breakpoint('medium') {
+                padding: 0 15px;
+            }
+            @include breakpoint('large') {
+                padding: 0 45px;
+            }
+        }
+    }
+}

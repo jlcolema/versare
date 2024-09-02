@@ -1,0 +1,188 @@
+<div class="previewCartWrapper">
+    <div class="previewCartHeader">
+        <h2>Your Cart</h2>
+        <button class="preview-cart-close" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
+    </div>
+    <div data-cartQuantity="{{cart.quantity}}" class="previewCartCount">{{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}</div>
+    <div class="previewCart" data-cart>
+      <div class="loadingOverlay"></div>
+      {{#if cart.items.length}}
+          <ul class="previewCartList">
+              {{#each (limit cart.items 4)}}
+                <li class="previewCartItem">
+                    <div class="previewCartItem-left">
+                        <div class="previewCartItem-image-container">
+                            <div class="previewCartItem-image">
+                                {{#if type '==' 'GiftCertificate'}}
+                                    <img
+                                        alt="GiftCertificate"
+                                        title="GiftCertificate"
+                                        src="{{cdn ../theme_settings.default_image_gift_certificate}}"
+                                    >
+                                {{else}}
+                                    {{> components/common/responsive-img
+                                        image=image
+                                        fallback_size=../theme_settings.productthumb_size
+                                        lazyload=../theme_settings.lazyload_mode
+                                        default_image=../theme_settings.default_image_product
+                                    }}
+                                {{/if}}
+                            </div>
+                            <div class="form-increment">
+                                {{#if can_modify}}
+                                    <button class="button button--icon"
+                                            data-cart-update
+                                            data-cart-itemid="{{id}}"
+                                            data-action="dec"
+                                    >
+                                        <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
+                                        <span class="icon minus">-</span>
+                                    </button>
+                                {{/if}}
+                                <input class="form-input form-input--incrementTotal increment--size cart-item-qty-input"
+                                    id="qty-{{id}}"
+                                    name="qty-{{id}}"
+                                    type="tel"
+                                    value="{{quantity}}"
+                                    data-quantity-min="{{min_purchase_quantity}}"
+                                    data-quantity-max="{{max_purchase_quantity}}"
+                                    data-quantity-min-error="{{lang 'products.quantity_min' quantity=min_purchase_quantity}}"
+                                    data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}"
+                                    min="1"
+                                    pattern="[0-9]*"
+                                    data-cart-itemid="{{id}}"
+                                    data-action="manualQtyChange"
+                                    aria-label="{{name}}"
+                                    aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
+                                {{#if can_modify}}
+                                    <button class="button button--icon"
+                                            data-cart-update
+                                            data-cart-itemid="{{id}}"
+                                            data-action="inc"
+                                    >
+                                        <span class="is-srOnly">{{lang 'products.quantity_increase' name=name}}</span>
+                                        <span class="icon">+</span>
+                                    </button>
+                                {{/if}}
+                            </div>
+                        </div>
+
+
+                        <div class="previewCartItem-content">
+                            <div>
+                                <span class="previewCartItem-brand">
+                                    {{brand.name}}
+                                </span>
+
+                                <h6 class="previewCartItem-name">
+                                    <a href="{{url}}" alt="{{name}}" title="{{name}}">{{name}}</a>
+                                </h6>
+
+                                <span class="previewCartItem-price">SKU: {{sku}}</span>
+                            </div>
+                            <span class="previewCartItem-price availability">{{availability}}</span>
+                        </div>
+                    </div>
+                    <div class="previewCartItem-right">
+                        <h4 class="previewCartItem-totalPrice">{{total.formatted}}</h4>
+                        {{#if can_modify}}
+                            <a class="cart-remove icon cart-remove--changes" data-cart-itemid="{{id}}" href="#" data-confirm-delete="{{lang 'cart.confirm_delete'}}">
+                                {{lang 'cart.checkout.remove'}}
+                            </a>
+                        {{/if}}
+                    </div>
+                </li>
+              {{/each}}
+            </ul>
+          {{else}}
+              <div role="alert" aria-live="polite" aria-atomic="false" class="previewCart-emptyBody">
+                  {{lang 'cart.checkout.empty_cart'}}
+              </div>
+          {{/if}}
+      </div>
+  </div>
+
+  {{#if cart.items.length}}
+        <div class="previewCartAction">
+            <div class="previewCartAction-content">
+
+                {{> components/cart/totals}}
+
+                <div class="previewCartButtons">
+                    {{#if cart.show_primary_checkout_button}}
+                        <div class="previewCartAction-checkout">
+                            <a href="{{urls.checkout.single_address}}" class="button button--small button--primary">
+                                <img src="{{cdn '/assets/icons/Lock-Icon.png' }}" alt="lock" class="checkout-lock ls-is-cached lazyloaded" width="14" height="19">
+                                {{lang 'cart.preview.checkout_now'}}
+                            </a>
+                        </div>
+                    {{/if}}
+
+                    <div class="previewCartAction-view-cart">
+                        <a href="/cart.php" class="button button--small button--primary">
+                            {{lang 'cart.preview.view_cart'}}
+                        </a>
+                    </div>
+
+                    {{#if cart.show_multiple_address_shipping}}
+                        <div class="previewCartAction-checkoutMultiple">
+                            <a href="{{urls.checkout.multiple_address}}">
+                                {{lang 'cart.preview.checkout_multiple'}}
+                            </a>
+                        </div>
+                    {{/if}}
+
+                    <div class="previewCart-checkoutPaymentIcons">
+
+                        <p>
+                            <span>{{lang 'cart.added_to_cart.payment_icons'}}</span>
+                        </p>
+
+                        <div class="previewCart-checkoutPaymentIcons__list previewCart-checkoutPaymentIcons__list--primary">
+                            <img src="{{cdn '/assets/icons/PayPal-icon.png'}}" width="64" height="17" />
+                            <img src="{{cdn '/assets/icons/PayPal-PayLater-icon.png'}}" width="81" height="18" />
+                            <img src="{{cdn '/assets/icons/Amazon-pay-icon.png'}}" width="64" height="12" />
+                        </div>
+
+                        <div class="previewCart-checkoutPaymentIcons__list previewCart-checkoutPaymentIcons__list--secondary">
+                            <img src="{{cdn '/assets/icons/visa-icon.png'}}" width="42" height="29" />
+                            <img src="{{cdn '/assets/icons/MasterCard-icon.png'}}" width="42" height="29" />
+                            <img src="{{cdn '/assets/icons/AmEx-icon.png'}}" width="42" height="29" />
+                            <img src="{{cdn '/assets/icons/Discover-icon.png'}}" width="42" height="29" />
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+  {{/if}}
+
+<script>
+    gtag('config', 'G-3VX2WP0L8M', {send_page_view: false});
+    gtag('config', 'UA-37502226-1', {send_page_view: false});
+</script>
+<script>
+    gtag('event', 'page_view', {
+        page_title: 'Versare Solutions LLC - Shopping Cart',
+        page_location: '/cart.php',
+        page_path: '/cart.php'
+    });
+</script>
+<script>
+gtag("event", "view_cart", {
+    currency: "{{currency_selector.active_currency_code}}",
+    value: parseFloat({{cart.sub_total.value}}),
+    items: [
+    {{#each cart.items}}
+    {
+        item_id: "{{#if sku}}{{sku}}{{else}}{{product_id}}{{/if}}",
+        item_name: "{{name}}",
+        item_brand: "{{brand.name}}",
+        price: parseFloat({{price.value}}),
+        quantity: parseInt({{quantity}})
+        },
+    {{/each}}
+    ]
+    });
+</script>

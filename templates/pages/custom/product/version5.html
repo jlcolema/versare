@@ -1,0 +1,32 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{#partial "page"}}
+    {{inject "sf_api_key" settings.storefront_api.token}} 
+    {{inject "custom_fields" product.custom_fields}}
+    {{inject "relatedProducts" product.related_products}}
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+    
+
+    <div itemscope itemtype="http://schema.org/Product">
+        {{> ae/components/products/product-view-version5 schema=true  }}
+
+        {{{region name="product_below_content"}}}
+
+        {{#all settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+        {{> components/products/tabs}}
+    </div>
+{{/partial}}
+{{> layout/base}}

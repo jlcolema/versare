@@ -1,0 +1,204 @@
+{{#partial "head"}}
+
+{{{ checkout.checkout_head }}}
+{{{ stylesheet '/assets/css/optimized-checkout.css' }}}
+{{ getFontsCollection }}
+
+<script type="text/javascript">
+    window.language = {{{langJson 'optimized_checkout'}}};
+</script>
+
+{{{head.scripts}}}
+
+<!-- Start VWO Async SmartCode -->
+<script type='text/javascript'>
+window._vwo_code = window._vwo_code || (function(){
+var account_id=638880,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+is_spa=1,
+hide_element='body',
+
+/* DO NOT EDIT BELOW THIS LINE */
+f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+    window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());
+</script>
+<!-- End VWO Async SmartCode -->   
+
+{{/partial}}
+
+{{#partial "page"}}
+<header class="checkoutHeader optimizedCheckout-header">
+    <div class="checkoutHeader-content">
+        <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
+        <h2 class="checkoutHeader-heading">
+            <a class="checkoutHeader-link" href="{{urls.home}}">
+                {{#if checkout.header_image}}
+                    <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
+                {{ else }}
+                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                {{/if}}
+            </a>
+        </h2>
+    </div>
+</header>
+
+{{{ checkout.checkout_content }}}
+
+<script>
+    var railAdded = function () {
+            
+        var rail = document.getElementsByClassName("optimizedCheckout-orderSummary")[0];
+
+        if (rail) {                
+            var customDiv = document.createElement('div');
+            customDiv.innerHTML = "{{{lang "optimized_checkout.cart.tax_exempt"}}}";
+            rail.parentElement.append(customDiv);
+            
+        } else {
+            setTimeout(function(){
+                railAdded();
+            }, 100); 
+        }
+    }
+
+    var mobileRailAdded = function () {
+            
+        var rail = document.querySelector(".modalOverlay--afterOpen .redeemable-label");
+
+        if (rail) { 
+            var customDiv = document.createElement('div');
+            customDiv.setAttribute("style", "padding: 1.87rem;");
+            customDiv.innerHTML = "{{{lang "optimized_checkout.cart.tax_exempt"}}}";
+            document.querySelector('.cart-modal-body.optimizedCheckout-orderSummary').parentElement.append(customDiv);
+            
+        } else {
+            setTimeout(function(){
+                mobileRailAdded();
+            }, 100); 
+        }
+    }
+
+    var shippingStep = function() {
+        var phTarget = document.querySelector('ul.optimizedCheckout-form-checklist');
+
+        if(phTarget){
+
+            
+            var shippingTarget = document.querySelector('#checkout-shipping-options');
+
+            if(shippingTarget){
+
+                var optionsList = document.querySelectorAll('.shippingOption-desc');
+                for(var railI = 0; railI < optionsList.length; railI++){
+                    switch (optionsList[railI].innerText) {
+                        case 'Freight (Dock Delivery)':
+                            var PODiv = document.createElement('div');
+                            PODiv.className = 'form-checklist-secondary-body';
+                            PODiv.innerHTML = '<p>{{lang "shipperHQ.dock"}}</p>';
+                            optionsList[railI].parentElement.parentElement.append(PODiv);
+                            break;
+                        case 'Freight (Curbside Delivery)':
+                            var PODiv2 = document.createElement('div');
+                            PODiv2.className = 'form-checklist-secondary-body';
+                            PODiv2.innerHTML = '<p>{{lang "shipperHQ.curbside"}}</p>';
+                            optionsList[railI].parentElement.parentElement.append(PODiv2);
+                            break;
+                        case 'Freight (Inside Delivery)':
+                            var PODiv = document.createElement('div');
+                            PODiv.className = 'form-checklist-secondary-body';
+                            PODiv.innerHTML = '<p>{{lang "shipperHQ.inside"}}</p>';
+                            optionsList[railI].parentElement.parentElement.append(PODiv);
+                            break;
+                        case 'Freight (White Glove Delivery)':
+                            var PODiv = document.createElement('div');
+                            PODiv.className = 'form-checklist-secondary-body';
+                            PODiv.innerHTML = '<p>{{lang "shipperHQ.white_glove"}}</p>';
+                            optionsList[railI].parentElement.parentElement.append(PODiv);
+                            break;
+                    }
+                }
+            }
+            shippingStepRemoved();
+        } else {
+            setTimeout(function(){
+                shippingStep();
+            }, 100); 
+        }
+    }
+
+    var shippingStepRemoved = function() {
+        var shippingTarget = document.querySelector('#checkout-shipping-options');
+
+        if(shippingTarget){
+            setTimeout(function(){
+                shippingStepRemoved();
+            }, 100); 
+        } else {
+            setTimeout(function(){
+                shippingStep();
+            }, 100); 
+        }
+    }
+
+
+    var paymentStep = function() {
+        var phTarget = document.querySelector('ul.optimizedCheckout-form-checklist');
+
+        if(phTarget){
+
+            var targetCheckElm = document.querySelector('#radio-cheque');
+
+            if(targetCheckElm){
+                var CMODiv = document.createElement('div');
+                CMODiv.className = 'form-checklist-secondary-body';
+                CMODiv.innerHTML = '<p>Make check payable to: <br /><strong>Versare Portable Products<br /><br /></strong></p><p>Send check to:<br /><strong>Versare Portable Products</strong><br /><strong>3236 California Street NE</strong><br /><strong>Minneapolis, MN 55418<br /><br /></strong></p><p>Tax Exempt? <a href="https://www.versare.com/tax-exempt/" target="_blank">Click here</a> for more information.</p>';
+
+                targetCheckElm.parentElement.parentElement.append(CMODiv);
+            }
+
+            var targetMoneyElm = document.querySelector('#radio-moneyorder');
+
+            if(targetMoneyElm){
+                var PODiv = document.createElement('div');
+                PODiv.className = 'form-checklist-secondary-body';
+                PODiv.innerHTML = '<p>Send copy of purchase order to:</p><p><strong>Versare Portable Products</strong><br /><strong>3236 California Street NE</strong><br /><strong>Minneapolis, MN 55418</strong></p><p><br />Or fax to:<br /><strong>800.310.4874</strong></p><p><br />Or email to:<br /><strong><a href="mailto:customerservice@versare.com">customerservice@versare.com</a></strong></p><p><br />Tax Exempt? <a href="https://www.versare.com/tax-exempt/" target="_blank">Click here</a> for more information.</p>';
+
+                targetMoneyElm.parentElement.parentElement.append(PODiv);
+            }
+
+            paymentStepRemoved();
+        } else {
+            setTimeout(function(){
+                paymentStep();
+            }, 100); 
+        }
+    }
+
+    var paymentStepRemoved = function() {
+        var paymentTarget = document.querySelector('form.checkout-form');
+
+        if(paymentTarget){
+            setTimeout(function(){
+                paymentStepRemoved();
+            }, 100); 
+        } else {
+            setTimeout(function(){
+                paymentStep();
+            }, 100); 
+        }
+    }
+
+    railAdded();
+    mobileRailAdded();
+    shippingStep();
+    paymentStep();
+</script>
+
+{{{ footer.scripts }}}
+<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+<div class="elfsight-app-248e875f-5ca7-4b17-a5ac-842f329dfc37"></div>
+{{/partial}}
+
+{{> layout/empty}}

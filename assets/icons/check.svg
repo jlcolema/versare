@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="35px" viewBox="0 0 36 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>check@1x</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="35" height="35"></rect>
+    </defs>
+    <g id="Home-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Page-/desktop" transform="translate(-196.000000, -2280.000000)">
+            <g id="Product-Highlight-Section-/desktop" transform="translate(196.500000, 1858.000000)">
+                <g id="Group-388" transform="translate(0.000000, 420.000000)">
+                    <g id="check" transform="translate(0.000000, 2.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="check-(Background/Mask)"></g>
+                        <path d="M30.1978614,9.7811571 L14.156196,25.8228256 C13.8827057,26.096316 13.5117728,26.2499619 13.124999,26.2499619 C12.7382251,26.2499619 12.3672922,26.096316 12.0938019,25.8228256 L4.8021359,18.5311579 C4.23262137,17.9616431 4.23262137,17.0382775 4.80213599,16.4687634 C5.37165061,15.8992486 6.29501612,15.8992486 6.86453069,16.4687634 L13.124999,22.7292338 L28.1354672,7.718762 C28.7049812,7.14924727 29.6283474,7.14924727 30.1978614,7.718762 C30.7673754,8.28827663 30.7673754,9.21164242 30.1978614,9.7811571 Z" id="Vector-" fill="#C273A7" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

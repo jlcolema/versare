@@ -1,0 +1,103 @@
+.blogs-container {
+    margin: 4rem 0;
+}
+
+.blogs-heading {
+    color: stencilColor("color-homepage-headings");
+    font-size: remCalc(36px);
+    font-family: stencilFontFamily("headings-font");
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.blogs {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+
+    .blog {
+        border: none;
+        padding-top: 0;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+
+        @include breakpoint('small') {
+            width: 50%;
+        }
+
+        @media (min-width: 1000px) {
+            width: 25%;
+        }
+
+        + .blog {
+            margin-top: 0;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 4rem;
+        }
+
+        .blog-post-figure {
+            width: 185px;
+            height: 125px;
+
+            .blog-thumbnail {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+
+                a {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        
+        .blog-post-body {
+            width: 80%;
+
+            .title {
+                position: relative;
+                font-size: 1.1rem;
+                padding: remCalc(7px);
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-family: stencilFontFamily('body-main-font');
+                font-size: remCalc(16px);
+                font-weight: 700;
+                color: stencilColor("color-textBase");
+            }
+
+            .blog-post-summary {
+                font-family: stencilFontFamily('body-main-font');
+                font-size: remCalc(15px);
+                margin-bottom: 1.5rem;
+            }
+
+            .button--blog {
+                background-color: stencilColor('button-blog-bg-color');
+                color: stencilColor('button-blog-color');
+                border-radius: 0;
+                border: remCalc(1px) solid stencilColor('button-blog-border');
+                font-family: stencilFontFamily('body-main-font');
+                text-transform: uppercase;
+
+                &:hover {
+                    color: stencilColor('button-blog-hover');
+                    border: remCalc(1px) solid stencilColor('button-blog-hover');
+                }
+            }
+        }
+    }
+}

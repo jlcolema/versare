@@ -1,0 +1,47 @@
+<ul class="custom-icons{{#if iconColor '==' 'blue'}} dark-icons{{else}} light-icons{{/if}}">
+    <li>
+        <div class="custom-icon">
+            <img 
+                class="lazyload" 
+                data-src="{{#if iconColor '==' 'blue'}}{{cdn 'webdav:global-props-icons/blue-icon-made-in-america.png'}}{{else}}{{cdn 'webdav:global-props-icons/grey-icon-made-in-america.png'}}{{/if}}" 
+                src="{{cdn 'img/loading.svg'}}"
+                alt="{{lang 'custom_icons.made_in_usa'}}"
+            >
+        </div>
+        <div class="custom-title">{{lang 'custom_icons.made_in_usa'}}</div>
+    </li>
+    <li>
+        <div class="custom-icon">
+            <img 
+                class="lazyload" 
+                data-src="{{#if iconColor '==' 'blue'}}{{cdn 'webdav:global-props-icons/blue-icon-shipping.png'}}{{else}}{{cdn 'webdav:global-props-icons/grey-icon-shipping.png'}}{{/if}}" 
+                src="{{cdn 'img/loading.svg'}}"
+                alt="{{lang 'custom_icons.factory_direct'}}"
+            >
+        </div>
+        <div class="custom-title">{{lang 'custom_icons.factory_direct'}}</div>
+    </li>
+    <li>
+        <div class="custom-icon">
+            <img 
+                class="lazyload" 
+                data-src="{{#if iconColor '==' 'blue'}}{{cdn 'webdav:global-props-icons/blue-icon-warranty.png'}}{{else}}{{cdn 'webdav:global-props-icons/grey-icon-warranty.png'}}{{/if}}" 
+                src="{{cdn 'img/loading.svg'}}"
+                alt="{{lang 'custom_icons.fully_customizable'}}"
+            >
+        </div>
+        <div class="custom-title">{{#if template_file '!=' 'pages/home'}}{{lang 'custom_icons.two_year_warranty'}}{{else}}{{lang 'custom_icons.two_year_warranty_alt'}}{{/if}}</div>
+    </li>
+    <li>
+        <div class="custom-icon">
+            <img 
+                class="lazyload" 
+                data-src="{{#if iconColor '==' 'blue'}}{{cdn 'webdav:global-props-icons/blue-icon-custom-configuration.png'}}{{else}}{{cdn 'webdav:global-props-icons/grey-icon-custom-configuration.png'}}{{/if}}" 
+                src="{{cdn 'img/loading.svg'}}"
+                alt="{{lang 'custom_icons.two_year_warranty'}}"
+            >
+        </div>
+        <div class="custom-title">{{lang 'custom_icons.fully_customizable'}}</div>
+    </li>
+</ul>
+

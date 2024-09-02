@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+
+    <head>
+
+        {{#contains product.category 'Hidden'}}<meta name="robots" content="noindex, nofollow">{{/contains}}
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MK7RN47');</script>
+        <!-- End Google Tag Manager -->
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        
+        <!-- TrustBox script -->
+        <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+        <!-- End TrustBox script -->
+
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{> components/common/polyfill-script }}
+        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
+
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+
+        {{getFontsCollection font-display='block'}}
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.font.js'}}" as="script">
+        <script async src="{{cdn 'assets/dist/theme-bundle.font.js'}}"></script>
+        {{{stylesheet '/assets/css/theme.css'}}}
+
+        {{{head.scripts}}}
+
+        {{~inject 'apiToken' settings.storefront_api.token}}
+        {{~inject 'zoomSize' theme_settings.zoom_size}}
+        {{~inject 'productSize' theme_settings.product_size}}
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
+        {{~inject 'carouselArrowAndDotAriaLabel' (lang 'carousel.arrow_and_dot_aria_label')}}
+        {{~inject 'carouselActiveDotAriaLabel' (lang 'carousel.active_dot_aria_label')}}
+        {{~inject 'carouselContentAnnounceMessage' (lang 'carousel.content_announce_message')}}
+        {{~inject 'shippingCountryErrorMessage' (lang 'cart.shipping_estimator.empty_country_error')}}
+        {{~inject 'shippingProvinceErrorMessage' (lang 'cart.shipping_estimator.empty_province_error')}}
+
+        <!-- Start VWO Async SmartCode -->
+        <script type='text/javascript'>
+            window._vwo_code = window._vwo_code || (function(){
+            var account_id=638880,
+            settings_tolerance=2000,
+            library_tolerance=2500,
+            use_existing_jquery=false,
+            is_spa=1,
+            hide_element='body',
+            
+            /* DO NOT EDIT BELOW THIS LINE */
+            f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+            window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());
+        </script>
+        <!-- End VWO Async SmartCode -->
+
+        {{!-- Get this loading ASAP --}}
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
+    </head>
+    <body class="type-{{page_type}} page-{{dashcase page.title}}">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK7RN47" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        {{~#and settings.privacy_cookie settings.is_eu_ip_address}}
+            {{> components/common/cookie}}
+        {{/and}}
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script>
+            {{!-- Exported in app.js --}}
+            function onThemeBundleMain() {
+                window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+            }
+        </script>
+        <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js'}}" onload="onThemeBundleMain()"></script>
+        {{{footer.scripts}}}
+
+        <script type="text/javascript">
+            if (typeof HawkSearch !== 'undefined' ){
+                HawkSearch.customEvent = function() {
+                //<![CDATA[
+                    if ('{{template}}') {
+                        if (('{{template}}' == 'pages/category') || ('{{template}}' == 'pages/custom/category/category') || ('{{template}}' == 'pages/search')) {
+                            HawkSearch.Tracking.track('pageload', {pageType: 'landing'});
+                        } else if ('{{template}}' == 'pages/product') {
+                            HawkSearch.Tracking.track('pageload', {pageType: 'item'});
+                            HawkSearch.Context.add("uniqueid", "{{product.id}}");
+                        } else if ('{{template}}' == 'pages/cart') {
+                            HawkSearch.Tracking.track('pageload', {pageType: 'cart'});
+                        } else {
+                            HawkSearch.Tracking.track('pageload', {pageType: 'custom'});
+                        }
+                    } //]]>
+                }
+            }
+        </script>
+            
+    </body>
+    {{#if page_type '==' 'product'}}
+        <!-- Facebook DPA -->
+        <script>
+            var pid = '{{product.id}}';
+            fbq('track', 'ViewContent', {
+                content_ids: [parseInt(pid, 10)],
+                content_type: 'product_group'
+            });
+
+            document.addEventListener('productView', function(e) {
+                fbq('track', 'ViewContent', {
+                    content_ids: [e.detail],
+                    content_type: 'product'
+                });
+                console.log('Sending to FB: ' + e.detail);
+            }, false);
+        </script>
+        <noscript>
+            <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id867978390368768&ev=ViewContent&cd[content-ids]={{product.id}}&cd[content_type]=product_group&noscript=1">
+        </noscript>
+        <!-- Add to cart -->
+        <script>
+            document.addEventListener('productAddToCart', function(e) {
+                fbq('track', 'AddToCart', {
+                    content_ids: [e.detail],
+                    content_type: 'product'
+                });
+                console.log('Sending to FB: ' + e.detail);
+            }, false);
+        </script>
+    {{/if}}
+</html>

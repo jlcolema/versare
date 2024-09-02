@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="{{ locale_name }}">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MK7RN47');</script>
+        <!-- End Google Tag Manager -->
+    <title>{{ head.title }}</title>
+    {{{ head.meta_tags }}}
+    {{{ head.config }}}
+
+    <link href="{{ head.favicon }}" rel="shortcut icon">
+    {{#block "head"}}{{/block}}
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK7RN47" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {{#block "page"}}{{/block}}
+
+    <script>
+        HawkSearch.customEvent = function() {
+        //<![CDATA[
+            if ('{{template}}') {
+                if (('{{template}}' == 'pages/category') || ('{{template}}' == 'pages/custom/category/category') || ('{{template}}' == 'pages/search')) {
+                    console.log('HS Type', 'landing');
+                    HawkSearch.Tracking.track('pageload', {pageType: 'landing'});
+                } else if ('{{template}}' == 'pages/product') {
+                    console.log('HS Type', 'item');
+                    HawkSearch.Tracking.track('pageload', {pageType: 'item'});
+                    HawkSearch.Context.add("uniqueid", "{{product.id}}");
+                } else if ('{{template}}' == 'pages/cart') {
+                    console.log('HS Type', 'cart');
+                    HawkSearch.Tracking.track('pageload', {pageType: 'cart'});
+                } else {
+                    console.log('HS Type', 'custom');
+                    HawkSearch.Tracking.track('pageload', {pageType: 'custom'});
+                }
+            } //]]>
+        }
+
+        console.log('template type', '{{{template}}}');
+    </script>
+
+{{#if page_type '==' 'orderconfirmation'}}
+    <script type="text/javascript">
+        HawkSearch.customEvent = function() {
+            // hawksearch page tracking
+            HawkSearch.Tracking.track('pageload', {pageType: 'order'});
+        }
+
+        // hawksearch tracking for sale
+        var orderNum = '{{checkout.order.id}}';
+        console.log('orderNo = ' + orderNum);
+        if (orderNum) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText) {
+                        var response = JSON.parse(this.responseText);
+                        var itemList = [];
+
+                        for (var i = 0; i < response.lineItems.physicalItems.length; i++) {
+                            var item = response.lineItems.physicalItems[i];
+                            itemList.push({
+                                uniqueid: item.productId,
+                                itemPrice: item.listPrice,
+                                quantity: item.quantity
+                            });
+                        }
+
+                        var hsObject = {
+                            orderNo: orderNum,
+                            itemList: itemList,
+                            total: response.orderAmount,
+                            subtotal: response.baseAmount,
+                            tax: response.taxes[0].amount,
+                            currency: response.currency.code
+                        };
+
+                        HawkSearch.customEvent = function() {
+                            HawkSearch.Tracking.track('sale', hsObject);
+                        }
+                    }
+                }
+            };
+            xhttp.open('GET', '/api/storefront/orders/' + orderNum, true);
+            xhttp.send();
+        }
+    </script>
+{{/if}}
+</body>
+{{#if page_type '==' 'orderconfirmation'}}
+    <!-- Facebook DPA -->
+    <script>
+        if (document.getElementById('orderConfirmation')) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var ordersResponse = JSON.parse(xmlhttp.responseText);
+                    var itemIds = [];
+                    for (var i = 0; i < ordersResponse.lineItems.physicalItems.length; i++) {
+                        itemIds.push(ordersResponse.lineItems.physicalItems[i].productId);
+                    }
+                    console.log('value: ' + ordersResponse.orderAmount.toFixed(2));
+                    console.log('content_ids: ' + itemIds);
+                    fbq('track', 'Purchase', {
+                        value: ordersResponse.orderAmount.toFixed(2),
+                        content_ids: itemIds,
+                        content_type: 'product'
+                    });
+                }
+            };
+            xmlhttp.open('GET', '/api/storefront/orders/{{checkout.order.id}}', true);
+            xmlhttp.send();
+        }
+    </script>
+{{/if}}
+</html>

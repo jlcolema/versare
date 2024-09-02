@@ -1,0 +1,26 @@
+{{#partial "page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+<div class="page">
+    <section class="page-content page-content--centered">
+           
+    <div class="page-404-container">
+        
+            <div class="image-404"><img class="shogun-image " src="https://i.shgcdn.com/36e384a0-5c89-4289-90e4-d12772624172/-/format/auto/-/preview/3000x3000/-/quality/lighter/" alt="" width="" height="" /></div>
+           
+            <div><h1 style="text-align: center;"><strong>{{lang 'page.404_message'}}</strong></h1>
+            </div>
+           
+            <div class="content-404">
+            <div class="shg-c shg-btn-wrapper  shg-align-center"><a class="return-to-homepage-btn" href="/"> &lt;&lt;  &nbsp;{{lang 'page.404_button'}} </a></div>
+           
+            </div>
+        </div>
+
+        <!-- {{> components/common/search-box}} -->
+    </section>
+</div>
+
+{{/partial}}
+{{> layout/base}}

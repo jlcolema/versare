@@ -1,0 +1,31 @@
+<a href="{{urls.home}}">
+    {{#if settings.store_logo.image}}
+        {{#if theme_settings.logo_size '===' 'original'}}
+            <img 
+                class="header-logo-image-unknown-size" 
+                src="{{getImage settings.store_logo.image 'logo_size'}}" 
+                alt="{{settings.store_logo.title}}" 
+                title="{{settings.store_logo.title}}">
+        {{else}}
+            <div class="header-logo-image-container">
+                <img 
+                    class="header-logo-image" 
+                    src="{{getImage settings.store_logo.image 'logo_size'}}" 
+                    srcset="{{getImageSrcset1x2x settings.store_logo.image theme_settings.logo_size}}"
+                    alt="{{settings.store_logo.title}}"
+                    title="{{settings.store_logo.title}}">
+
+                <div class="header-logo-mini-container">
+                    <img class="header-logo-image--mini" src="https://cdn11.bigcommerce.com/s-bcwxdbhdjm/product_images/uploaded_images/stickylogo.png" alt="logo-mini" title="{{settings.store_logo.title}}">
+                   
+                </div>
+            </div>
+        {{/if}}
+    {{else}}
+        <span class="header-logo-text">{{settings.store_logo.title}}</span>
+    {{/if}}
+</a>
+
+<div class="top__number top-number--logo">
+    <strong><a href="tel:800-830-0210" class="icon icon-phone"><svg><use xlink:href="#icon-phone"></use></svg></a><span>800-830-0210</span></strong>
+</div>

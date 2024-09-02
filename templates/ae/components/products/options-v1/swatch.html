@@ -1,0 +1,185 @@
+<div class="accordion-block accordion-color-selector">
+   
+
+        <div class="accordion-block">
+            <div
+                class="accordion-navigation toggleLink"
+                role="button"
+                data-collapsible="#form-field-colors">
+                                
+                <label class="form-label form-label--alternate form-label--inlineSmall label-title--changes " data-rect-type="{{lang 'products.color'}}" {{#if style}}style="{{style}}" {{/if}}>
+                    {{lang 'products.color'}}
+                </label>
+
+                <div class="select-color">
+                    <button class="select-color-btn"><span class="chosen-swatch"></span><span class="chosen-color">Select Color</span></button>
+                    
+                </div>
+            </div>
+            <div class="form-field form-field-colors accordion-content" data-product-attribute="swatch" id="form-field-colors">
+                <div class="accordion-navigation toggleLink" role="button" data-collapsible="#form-field-colors"> 
+                    <div class="swatch-color-header">
+                        <h3 class="swatch-header">Choose A Color</h3>
+                        <button class="swatch-header-btn"></button>
+                    </div>  
+                </div>
+                <div class="swatch-full-container">
+                    <div class="swatch-full-container--inner">
+                        <div id="tileSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Tile
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="laminateSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Laminate
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="fabricSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Fabric
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="polyesterSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                SoundSorb
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="polycarbonateSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Polycarbonate
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="designSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Your Design
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="canvasSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Canvas
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="wickerSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Wicker
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="steelSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Steel
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="aluminumSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Aluminum
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="plasticSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Plastic
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="frpSwatch" class="swatch-container">
+                          <div class="swatch-cont-titles">
+                              FRP
+                              <span class="swatch-switch" aria-label="closed"></span>
+                          </div>
+                      </div>
+                        <div id="woodGrainSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Wood Grain
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="windowSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Window Style
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="olefinSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Olefin Color
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="blockSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Block Color
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="desktopColorSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Desktop Color
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <div id="desktopSwatch" class="swatch-container">
+                            <div class="swatch-cont-titles">
+                                Desktop Color
+                                <span class="swatch-switch" aria-label="closed"></span>
+                            </div>
+                        </div>
+                        <label class="form-label form-label--alternate form-label--inlineSmall color-palette-label">
+                            {{this.display_name}}:
+                            <span data-option-value></span>
+    
+                            {{#if required}}
+                                <small>{{lang 'common.required'}}</small>
+                            {{/if}}
+                        </label>
+    
+                        
+                
+                        {{#each this.values}}
+                            <div class="label-color-container">
+                                
+                                <label class="form-option form-option-swatch rectangle-item" >
+                                    {{#if image}}
+                                        <span class='form-option-variant form-option-variant--pattern' title="{{this.label}}" style="background-image: url('{{getImage image "swatch_option_size"}}');"></span>
+                                    {{/if}}
+                                    {{#if data.[2]}}
+                                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                                        <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[2]}}"></span>
+                                    {{else}}
+                                        {{#if data.[1]}}
+                                            <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                            <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[1]}}"></span>
+                                        {{else}}
+                                            {{#if data.[0]}}
+                                                <span class='form-option-variant form-option-variant--color' title="{{this.label}}" style="background-color: #{{data.[0]}}"></span>
+                                            {{/if}}
+                                        {{/if}}
+                                    {{/if}}
+                                    {{#if pattern}}
+                                        <span class="form-option-expanded">
+                                            <span class="form-option-image" style="background-image: url('{{getImage image 'core-swatch'}}');"></span>
+                                        </span>
+                                    {{/if}}
+                                </label>
+                
+                               <div class="swatch-color-label">{{last (split this.label "- ")}}</div>
+                                
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    

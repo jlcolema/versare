@@ -1,0 +1,119 @@
+---
+cart: true
+---
+{{inject 'cancelButtonText' (lang 'common.cancel')}}
+{{#partial "page"}}
+{{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+<div class="page">
+
+    <div class="page-content cart-page" data-cart>
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <div class="cart-heading-btns">
+            <div class="cart-btn-container ">
+                <!-- <a href="/shop/" class="button button--primary btn--shopping"> -->
+                <button type="button" class="button button--primary btn--shopping continue-shopping-btn">
+                    <img src="{{cdn '/assets/icons/chevron-left.svg'}}" alt="left" class="lazyload">Continue
+                    Shopping</button>
+                <!-- </a> -->
+            </div>
+        </div>
+        <div class="mobile-header-cta">
+            <div class="cart-total">
+                <div class="cart-total-label final-total--label">
+                    <strong>{{lang 'cart.checkout.grand_total'}}:</strong>
+                </div>
+                <div class="cart-total-value cart-total-grandTotal final-total--value">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                    <span>{{cart.grand_total.formatted}}</span>
+                    {{else}}
+                    {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </div>
+            </div>
+            <a class="button button--primary btn-checkout--main" href="{{urls.checkout.single_address}}"
+                title="{{lang 'cart.checkout.title'}}"><img
+                    src="https://cdn11.bigcommerce.com/s-bcwxdbhdjm/images/stencil/original/image-manager/lock-icon.png"
+                    alt="lock" class="lazyload checkout-lock">{{lang 'cart.checkout.button'}}</a>
+        </div>
+        <div class="cart-container">
+            {{> components/cart/page-title}}
+        </div>
+
+        <div data-cart-status>
+            {{> components/cart/status-messages}}
+        </div>
+
+        {{#if cart.items.length}}
+        <div class="loadingOverlay"></div>
+
+        <div data-cart-content class="cart-content-padding-right">
+            {{> components/cart/content}}
+            <div class="cart-totals-checkout-buttons">
+                {{#if cart.show_primary_checkout_button}}
+                <div class="cart-actions">
+                    <a class="button button--primary btn-checkout--main" href="{{urls.checkout.single_address}}"
+                        title="{{lang 'cart.checkout.title'}}"><img
+                            src="https://cdn11.bigcommerce.com/s-bcwxdbhdjm/images/stencil/original/image-manager/lock-icon.png"
+                            alt="lock" class="lazyload checkout-lock">{{lang 'cart.checkout.button'}}</a>
+                    {{#if cart.show_multiple_address_shipping}}
+                    <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
+                        {{lang 'cart.preview.checkout_multiple'}}
+                    </a>
+                    {{/if}}
+                </div>
+                {{else}}
+                <div class="cart-actions cart-content-padding-right">
+                    <a class="button" href="{{urls.home}}" title="{{lang 'cart.continue_shopping'}}">
+                        <img src="{{cdn '/assets/icons/chevron-left.svg'}}" alt="left" class="lazyload">
+                        {{lang
+                        'cart.continue_shopping'}}</a>
+                </div>
+                {{/if}}
+                {{> components/cart/totals}}
+                <div class="mobile-checkout-button">
+                    <a class="button button--primary btn-checkout--main" href="{{urls.checkout.single_address}}"
+                        title="{{lang 'cart.checkout.title'}}"><img
+                            src="https://cdn11.bigcommerce.com/s-bcwxdbhdjm/images/stencil/original/image-manager/lock-icon.png"
+                            alt="lock" class="lazyload checkout-lock">{{lang 'cart.checkout.button'}}</a>
+                </div>
+
+                <div class="cart-quick-pay">
+                    <span>Available At Checkout</span>
+                    <div>
+                        <img src="{{cdn '/assets/img/PayPal-icon.png'}}" alt="paypal" class="lazyload top-quick-pay">
+                        <img src="{{cdn '/assets/img/PayPal-PayLater-icon.png'}}" alt="paypal"
+                            class="lazyload top-quick-pay">
+                        <img src="{{cdn '/assets/img/Amazon-pay-icon.png'}}" alt="paypal"
+                            class="lazyload top-quick-pay">
+                        <img src="{{cdn '/assets/img/visa-icon.png'}}" alt="paypal" class="lazyload lower-quick-pay">
+                        <img src="{{cdn '/assets/img/MasterCard-icon.png'}}" alt="paypal"
+                            class="lazyload lower-quick-pay">
+                        <img src="{{cdn '/assets/img/AmEx-icon.png'}}" alt="paypal" class="lazyload lower-quick-pay">
+                        <img src="{{cdn '/assets/img/Discover-icon.png'}}" alt="paypal"
+                            class="lazyload lower-quick-pay">
+
+                    </div>
+                </div>
+
+                <div data-cart-additional-checkout-buttons
+                    class="cart-additionalCheckoutButtons cart-content-padding-right">
+                    <!-- {{> components/cart/additional-checkout-buttons}} -->
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-below-items">
+            {{> ae/components/iconBar iconColor='blue'}}
+        </div>
+
+        {{{region name="cart_below_totals"}}}
+
+
+        {{else}}
+        <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
+        {{/if}}
+
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

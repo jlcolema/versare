@@ -1,0 +1,14 @@
+    
+    {{#if product.related_products}}
+
+    <div id="relatedItems">
+        <div class="product--centred">
+            <h2 class="relatedproducts-title">
+                {{lang 'products.related_products'}}
+            </h2>
+        </div> 
+
+        {{> ae/components/products/relatedProduct products=product.related_products columns=4 list="Related Products"}}
+    </div>
+
+    {{/if}}

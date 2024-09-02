@@ -1,0 +1,382 @@
+[data-content-region=item_block_top_container] {
+    position: relative;
+}
+@media(max-width: 1699px) {
+    .hotSpot-container {
+        margin: 0;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: initial!important;
+    }
+}
+.hotSpot-container {
+    .hot-spot-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0 75px;
+
+        @include breakpoint(1700px) {
+            padding: 0;
+        }
+        .hot-spot-title-container {
+            width: 1100px;
+            max-width: calc(100% + 90px);
+            margin: 0 -35px;
+            
+            @include breakpoint(1700px) {
+                max-width: 100%;
+                margin: 0;
+            }
+            h1 {
+                color: stencilColor(hotSpot-header);
+                font-family: stencilFontFamily(altform-font);
+                font-size: remCalc(24px);
+                line-height: 43px;
+                font-weight: 600;
+                letter-spacing: 0;
+                text-align: center;
+                margin: 0;
+                text-transform: uppercase;
+
+                @include breakpoint("medium") {
+                    font-size: remCalc(32px);
+                    line-height: 58px;
+                }
+            }
+            p {
+                color: stencilColor(homeHeroWidget-para);
+                font-family: stencilFontFamily(body-font);
+                font-size: remCalc(21px);
+                letter-spacing: 0;
+                line-height: 38px;
+                text-align: center;
+                margin: 15px 0 50px;
+            }
+        }
+        .hot-spot-panel {
+            display: none;
+            padding-bottom: 20px;
+            width: calc(100% + 110px);
+            position: relative;
+            z-index: 1;
+            
+            @include breakpoint("small") {
+                width: 100%;
+                padding-bottom: 27px;
+            }
+            .slick-list {
+                overflow: visible;
+
+                .slick-track {
+                    .hot-spot-slide {
+                        position: relative;
+
+                        .hot-spot-image {
+                            width: 100%;
+                            height: 54vw;
+                            border-radius: 5px;
+                            object-fit: cover;
+                            
+                            @include breakpoint("small") {
+                                height: 47vw;
+                            }
+                            @include breakpoint(1700px) {
+                                height: 800px;
+                            }
+                        }
+                        .hot-spot-products {
+                            .hot-spot-item {
+                                position: absolute;
+                                display: flex;
+                                justify-content: center;
+
+                                .hot-spot-link {
+                                    position: absolute;
+                                    width: 50px;
+                                    height: 50px;
+                                    background: rgba(242,201,76,0.2);
+                                    border-radius: 50%;
+                                    border: 1px solid stencilColor(hot-spot-icon-color); 
+                                    transition: 0.3s ease;
+                                    left: 50%;
+                                    top: 50%;
+                                    transform: translate(-50%, -50%);
+                                    padding: 1rem;
+
+                                    @include breakpoint("small") {
+                                        width: 80px;
+                                        height: 80px;
+                                    }
+                                    &:after {
+                                        content: '';
+                                        width: 14px;
+                                        height: 14px;
+                                        background: stencilColor(hot-spot-icon-color);
+                                        border-radius: 50%;
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%);
+
+                                        @include breakpoint("small") {
+                                            width: 24px;
+                                            height: 24px;
+                                        }
+                                    }
+                                }
+                                &.is-open {
+                                    .hot-spot-link {
+                                        width: 14px;
+                                        height: 14px;
+                                        padding: 7px;
+
+                                        @include breakpoint("small") {
+                                            width: 24px;
+                                            height: 24px;
+                                            padding: 12px;
+                                        }
+                                    }
+                                }
+                                .dropdown-menu {
+                                    display: none;
+                                    left: initial;
+                                    top: initial;
+                                    bottom: 20px;
+                                    justify-content: center;
+                                    width: 210px;
+                                    padding: 25px 15px 15px;
+                                    max-width: initial;
+                                    border-radius: 5px;
+                                    background: stencilColor(color-white);
+                                    box-shadow: 0 4px 5px rgba(50, 50, 50, 0.3);
+
+                                    @include breakpoint("small") {
+                                        width: 270px;
+                                    }
+                                    @include breakpoint(767px) {
+                                        width: 300px;
+                                        padding: 25px;
+                                    }
+                                    @include breakpoint("medium") {
+                                        width: 320px;
+                                        padding: 25px 30px;
+                                    }
+                                    &:before {
+                                        display: inline-block;
+                                        width: 0;
+                                        height: 0;
+                                        border-right: 15px solid stencilColor(color-white);
+                                        border-top: 15px solid transparent;
+                                        border-left: 0 dotted;
+                                        border-bottom: 15px solid transparent;
+                                        vertical-align: middle;
+                                        position: absolute;
+                                        bottom: -22px;
+                                        -webkit-filter: drop-shadow(-4px 0px 2px rgba(130,130,130,.3));
+                                        filter: drop-shadow(-4px 0px 2px rgba(130,130,130,.3));
+                                        -ms-filter    : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
+                                        filter        : "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=2, Color='#444')";
+                                        left: 50%;
+                                        transform: translate(-50%, 0) rotate(270deg);
+                                        content: '';
+                                    }
+
+                                    &.flipped {
+                                        bottom: initial;
+                                        top: 20px;
+
+                                        &:before {
+                                            top: -20px;
+                                            transform: translate(-50%, 0) rotate(90deg);
+                                        }
+                                    }
+                                }
+                                &.is-open {
+                                    .dropdown-menu {
+                                        display: flex;
+                                    }
+                                }
+                                .product-popup {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+
+                                    .close-popup {
+                                        position: absolute;
+                                        right: 5px;
+                                        top: 6px;
+                                        width: 22px;
+                                        height: 22px;
+                                        cursor: pointer;
+                                        display: flex;
+                                        align-items: center;
+                                        overflow: hidden;
+                                    }
+                                    img {
+                                        width: 239px;
+                                        margin-bottom: 7px;
+                                        border-radius: 4px;
+                                        
+                                        @include breakpoint("medium") {
+                                            width: 279px;
+                                        }
+                                    }
+                                    h4 {
+                                        font-family: stencilFontFamily(altform-font);
+                                        font-weight: 600;
+                                        font-size: remCalc(16px);
+                                        line-height: 20px;
+                                        color: stencilColor(hotSpot-header);
+                                        margin: 0 0 10px;
+                                        text-align: center;
+
+                                        @include breakpoint("small") {
+                                            margin: 0 0 20px;
+                                            font-size: remCalc(18px);
+                                            line-height: 22px;
+                                        }
+                                    }
+                                    p {
+                                        font-family: stencilFontFamily(body-font);
+                                        margin: 0 0 10px;
+                                        font-weight: 400;
+                                        font-size: remCalc(16px);
+                                        line-height: 19px;
+                                        color: stencilColor(color-black);
+                                        text-align: center;
+
+                                        @include breakpoint("small") {
+                                            margin: 0 0 20px;
+                                        }
+                                    }
+                                    a {
+                                        text-transform: uppercase;
+                                        margin: 0;
+                                        width: 100%;
+                                        padding: 10px;
+                                        font-size: remCalc(12px);
+
+                                        @include breakpoint("small") {
+                                            padding: 20px 10px;
+                                            font-size: remCalc(16px);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.slick-initialized {
+                display: block;
+            }
+        }
+        .hot-spot-carousel {
+            display: none;
+            
+            &.slick-initialized {
+                display: block;
+            }
+            .slick-list {
+                margin: 0 -6px;
+
+                @include breakpoint("small") {
+                    margin: 0 -12px;
+                }
+                @include breakpoint("large") {
+                    margin: 0 -27px;
+                }
+                .slick-track {
+
+                    .hot-spot-item {
+                        margin: 0 6px;
+                        
+                        &.slick-selected {
+                            position: relative;
+
+                            &:before {
+                                content: '';
+                                border: 3px solid stencilColor(color-btn);
+                                border-radius: 5px;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        @include breakpoint("small") {
+                            margin: 0 12px;
+                        }
+                        @include breakpoint("large") {
+                            margin: 0 27px;
+                        }
+                        .hot-spot-image {
+                            border-radius: 5px;
+                            cursor: pointer;
+                            height: 13vw;
+                            object-fit: cover;
+                            
+                            @include breakpoint(1700px) {
+                                height: 220px;
+                            }
+                        }
+                    }
+                }
+            }
+            .slick-arrow {
+                border: none;
+                height: 40px;
+                width: 40px;
+                padding: 0;
+                background: none;
+                top: 50%;
+                transform: translate(0, -50%);
+                margin: 0;
+                z-index: 0;
+                @include breakpoint("medium") {
+                    height: 50px;
+                    width: 50px;
+                }
+                &:before {
+                    background-image: url(https://store-1kskgks3ik.mybigcommerce.com/content/chevron-down.svg);
+                    height: 30px;
+                    width: 40px;
+
+                    @include breakpoint("medium") {
+                        height: 40px;
+                        width: 50px;
+                    }
+                }
+                &.slick-prev {
+                    left: -56px;
+
+                    @include breakpoint("medium") {
+                        left: -62px;
+                    }
+                    @include breakpoint(1700px) {
+                        left: -66px;
+                    }
+                    &:before {
+                        transform: rotate(90deg);
+                    }
+                }
+                &.slick-next {
+                    right: -56px;
+
+                    @include breakpoint("medium") {
+                        right: -62px;
+                    }
+                    @include breakpoint(1700px) {
+                        right: -66px;
+                    }
+                    &:before {
+                        transform: rotate(270deg);
+                    }
+                }
+            }
+        }
+    }
+}

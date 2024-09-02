@@ -1,0 +1,20 @@
+<div class="form-field {{#contains this.display_name '#'}}form-field--hash{{/contains}}" data-product-attribute="set-select">
+    <label class="form-label form-label--alternate form-label--inlineSmall{{#or (if this.display_name '===' '# of Posts') (if this.display_name '===' '# of Wall-Mount Brackets')}} has-help{{/or}}" for="attribute_select_{{id}}"   data-type="{{#contains this.display_name "#"}}{{lang 'products.choose_dynamic_options' product_name='' option_name=this.display_name}}{{else}}{{lang 'products.choose_dynamic_options' product_name='Panel' option_name=this.display_name}}{{/contains}}"  data-select-type="{{this.display_name}}">
+        {{#contains this.display_name "#"}}
+            {{lang 'products.choose_dynamic_options' product_name='' option_name=this.display_name}}
+        {{else}}
+            {{lang 'products.choose_dynamic_options' product_name='Panel' option_name=this.display_name}}
+        {{/contains}}
+        {{#or (if this.display_name '===' '# of Posts') (if this.display_name '===' '# of Wall-Mount Brackets')}} 
+            <a href="#" data-reveal-id="{{dashcase  this.display_name}}">
+                <img data-src="{{cdn 'assets/icons/question-mark-new.png'}}" alt="Helpful Tips" class="lazyload">
+            </a>
+        {{/or}}
+    </label>
+
+    <select class="form-select form-select--small" name="attribute[{{this.id}}]" id="attribute_select_{{id}}" {{#if required}}required{{/if}}>
+        {{#each this.values}}
+            <option data-product-attribute-value="{{id}}" value="{{id}}" {{#if selected}}selected data-default{{/if}}>{{label}}</option>
+        {{/each}}
+    </select>
+</div>

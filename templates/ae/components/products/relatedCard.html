@@ -1,0 +1,20 @@
+<div class="image-wrapper">
+    <a href="{{url}}">
+        {{#if image}}
+            <img src="{{getImageSrcset image 1x=(default fallback_size '320w')}}">
+        {{else}}
+            <img src="{{cdn 'assets/img/ProductDefault.gif'}}" class="defaultImg">
+        {{/if}}
+
+    </a>
+</div>
+<div class="text-wrapper">
+    <a href="{{url}}">
+        <h4 class="product-title">
+            {{name}}
+        </h4>
+    </a>
+    <div class="product-price">
+        {{> components/products/price price=price}}
+    </div>
+</div>
